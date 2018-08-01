@@ -1,8 +1,6 @@
 Stock Market API Project:
 Using React, Redux and 'iextrading' stock market API.
 
-Built an SPA that displays the prices of five different stocks over the past week
-and allows you to search new stocks using its respective stock symbol 
-ex: (fb :facebook)
-Link to a list of different stock symbols:
-http://eoddata.com/symbols.aspx
+1. Fixed - not found stock symbol
+2. Fixed - display stock symbol in table caption
+3. Fixed - modal should display selected stock information

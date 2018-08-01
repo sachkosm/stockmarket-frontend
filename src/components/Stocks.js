@@ -12,6 +12,7 @@ import Modal from 'react-responsive-modal';
 class Stocks extends Component {
   state = {
     open: false,
+    fecthCounter: 0,
     selectedStock: {},
     selectedStockId: '',
     selectedStockData: {
@@ -100,8 +101,17 @@ class Stocks extends Component {
     this.setState({ open: false });
   };
   componentDidMount() {
-    this.props.fetchMyStock()
+    this.props.fetchMyStock();
+    window.fetchMyStock_IntervalId = setInterval(
+      () => {
+        let counter = this.state.fecthCounter + 1;
+        this.setState({ fecthCounter: counter });
+        this.props.fetchMyStock();
+      }, 5000);
   };
+  componentWillUnmount() {
+    clearInterval(window.fetchMyStock_IntervalId);
+  }
   renderMyStocks() {
     console.log(this.props.MyStocks)
     var i = 0;
@@ -237,7 +247,7 @@ class Stocks extends Component {
 
     return (
       <div className="container">
-        <h2>My Stocks</h2><br />
+        <h2>My Stocks updating every 5 seconds ( update number: {this.state.fecthCounter })</h2><br />
         <div className="row">
           {this.renderMyStocks()}
         </div>

@@ -14,6 +14,7 @@ class SearchBar extends Component {
     this.setState({term: event.target.value});
   }
   onFormSubmit(event){
+ 
     event.preventDefault();
     this.props.fetchStock(this.state.term);
     this.setState({term: '' });
@@ -25,7 +26,7 @@ class SearchBar extends Component {
         className='input-group'
         >
         <input
-          placeholder="SEARCH BY STOCK SYMBOL"
+          placeholder={this.props.placeholder}
           className="form-control"
           value={this.state.term}
           onChange={this.onInputChange}/>
@@ -37,10 +38,11 @@ class SearchBar extends Component {
   }
 }
 
-function mapDispatchToProps(disptach){
+function mapDispatchToProps(dispatch){
+  console.log(dispatch)
   return bindActionCreators(
     {fetchStock},
-    disptach
+    dispatch
   );
 }
 
